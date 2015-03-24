@@ -29,8 +29,10 @@ Window {
                 radius: 16
                 border.width: 3
                 border.color: "#0b0b0b"
-
-        }
+                MouseArea {
+                    id: mouse
+                    anchors.fill: parent
+                }
     }
 
 }
