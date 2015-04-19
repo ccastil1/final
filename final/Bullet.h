@@ -1,12 +1,12 @@
 #ifndef BULLET
 #define BULLET
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
 
-class Bullet: public QObject, public QGraphicsRectItem{
+class Bullet: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Bullet();
+    Bullet(QGraphicsItem * parent=0);
 public slots:
     void move();
 
