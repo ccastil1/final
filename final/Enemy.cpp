@@ -14,7 +14,7 @@ Enemy::Enemy(QGraphicsItem *parent):QObject(), QGraphicsPixmapItem(parent)
     setPos(random_number,0);
 
     //draw the enemy
-    setPixmap(QPixmap(":/images/Enemy_plane.png"));
+    setPixmap(QPixmap(":/images/Enemy_plane.png")); //change to valid file to allow compilation
 
     // connect
     QTimer * timer = new QTimer();
