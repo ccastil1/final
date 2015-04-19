@@ -8,10 +8,10 @@
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     bulletsound = new QMediaPlayer();
-    bulletsound->setMedia(QUrl("qrc:/sounds/Laser.wav"));
+    bulletsound->setMedia(QUrl("qrc:/sounds/Laser.wav"));   //can replace with a different sound file.
 
     // Set graphic
-    setPixmap(QPixmap(":/images/Player_plane.png"));
+    setPixmap(QPixmap(":/images/Player_plane.png"));    //change to valid filepath
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
