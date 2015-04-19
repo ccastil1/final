@@ -11,7 +11,7 @@ extern Game * game; //allows use of the external global object
 Bullet::Bullet(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent)
 {
     //draw the graphic
-    setPixmap(QPixmap(":/images/greenLaserRay.png"));
+    setPixmap(QPixmap(":/images/greenLaserRay.png"));   //change directory to choose different image
 
     // connect
     QTimer * timer = new QTimer();
