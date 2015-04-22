@@ -1,0 +1,14 @@
+TimeLog:
+3-17	2 hrs.		Studied and modified the colliding mice example to attempt to understand how collision works and what could be done when objects collide
+3/22 - 3/23	3 hrs.	Worked with Travis figuring out how to load and display images. Also looked in the game 'Risk of Rain' for usable pixel assets.
+3-24	2 hrs.		Studied the subattaq example. learning the structure of an actual game and how the qt creators implemented their assets
+3-26	2 hrs.		Read qt resources on how to impleent sprites.
+4-02	2 hrs.		Started to try to rebuild the subattaq example. Started making a main window loop so as to provide an environment for the colliding AI which hopefully could be re-used for the final project. Also browsed OCRemix.org for usable tracks for the game.
+
+E.T., considered one of the worst games in history, was made in 6 weeks by an industry veteran. I hope that this can put learning the system in perspective. Luckily, unlike Howard Scott Warshaw, the qt library had resources that detail the mechancs we need to make this game work. I have looked up resources that detail how to implement animated sprites. I also have a modified the colliding mice example in the repository that has rudimentary movement and collision logic we could use as an example. The colliding mice will provide code for "proximity boxes" which will prompt objects to run their destructors upon collision.
+
+QT also has documentation on how to implement animated sprites. Luckily animation in the game could be really rudimentary as enemies are largely machines and explosives so motion could be principally expressed in rotation.
+
+I also tried dissecting QT's own example of a game. So I'm using that structure their animation manager and graphics scene as a basis for the final project. I learned the logic and structure behind subattaq and I feel I could easily adapt it with explosives and enemies for the purposes of our game.
+
+https://github.com/ccastil1/final

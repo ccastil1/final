@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\Bullet.o
+./release\Enemy.o
+./release\Game.o
+./release\Health.o
+./release\Player.o
+./release\Score.o
+./release\moc_mainwindow.o
+./release\moc_Bullet.o
+./release\moc_Enemy.o
+./release\moc_Player.o
+);
