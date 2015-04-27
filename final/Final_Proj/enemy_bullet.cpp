@@ -39,7 +39,7 @@ void Enemy_Bullet::move()
     }
 
     // move the Enemy_Bullet up
-    setPos(x(),y()+10);
+    setPos(x(),y()+25);
     // delete the Enemy_Bullet when it moves off screen
     if(pos().y() > 850){
 //      qDebug() << "Enemy_Bullet deleted";

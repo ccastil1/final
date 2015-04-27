@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "Game.h"
 #include "Health.h"
-@#include "Enemy_Bullet.h"
+#include "Enemy_Bullet.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
@@ -25,22 +25,17 @@ Enemy::Enemy(QGraphicsItem *parent):QObject(), QGraphicsPixmapItem(parent)
 
     // connect shooting
     QTimer * shotClock = new QTimer();
-    connect(timer, SIGNAL(timeout()),this,SLOT(shoot()))
+    connect(timer, SIGNAL(timeout()),this,SLOT(shoot()));
+
+    shotClock->start(500);
 }
 
 void Enemy::shoot()
 {
-    Enemy_Bullet * enemybullet = new Bullet();
+    Enemy_Bullet * enemybullet = new Enemy_Bullet();
     enemybullet->setPos(x()+45 ,y());
     //qDebug() <<"bullet created";
     scene()->addItem(enemybullet);
-    //play bulletsound
-    if (bulletsound->state()==QMediaPlayer::PlayingState){
-        bulletsound->setPosition(0);
-    }
-    else if (bulletsound->state() == QMediaPlayer::StoppedState){
-        bulletsound->play();
-    }
 }
 
 void Enemy::move()

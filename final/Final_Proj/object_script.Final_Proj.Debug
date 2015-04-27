@@ -7,8 +7,16 @@ INPUT(
 ./debug\Health.o
 ./debug\Player.o
 ./debug\Score.o
+./debug\enemy_bullet.o
+./debug\qrc_Laser.o
+./debug\qrc_Enemy_plane.o
+./debug\qrc_Player_plane.o
+./debug\qrc_star-background.o
+./debug\qrc_bgmusic.o
+./debug\qrc_greenLaserRay.o
 ./debug\moc_mainwindow.o
 ./debug\moc_Bullet.o
 ./debug\moc_Enemy.o
 ./debug\moc_Player.o
+./debug\moc_enemy_bullet.o
 );
