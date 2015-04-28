@@ -1,75 +1,51 @@
-#include "game.h"
-#include <QGraphicsScene>
-#include "tower.h"
-#include "bullet.h"
 #include "enemy.h"
-#include "buildtowericon.h"
+#include <QPixmap>
+#include <QTimer>
+#include <qmath.h>
 
+#define STEP_SIZE 5
 
-Game::Game(): QGraphicsView()
+Enemy::Enemy(QList<QPointF> ptsToFollow,QGraphicsItem *parent)
 {
-    //create scene
-    scene = new QGraphicsScene(this);
-    scene->setSceneRect(0,0,800,600);
+    //set graphics
+    setPixmap(QPixmap(":/images/semrich.png"));
 
+    //set points
+    points = ptsToFollow;
+    point_index = 0;
+    dest = points[0];
+    rotateToPoint(dest);
 
-    //set scene
-    setScene(scene);
-
-    //create a tower
-    Tower * t = new Tower();
-    t->setPos(250,250);
-
-    //add tower to scene
-    scene->addItem(t);
-
-    cursor = NULL;
-    build = NULL;
-    setMouseTracking(true);
-
-    setFixedSize(800,600);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    //create enemy
-    Enemy * enemy = new Enemy();
-    scene->addItem(enemy);
-
-    //test code
-    BuildTowerIcon * ic = new BuildTowerIcon();
-    scene->addItem(ic);
-}
-
-void Game::setCursor(QString filename)
-{
-    if (cursor){
-        scene->removeItem(cursor);
-        delete cursor;
-    }
-
-    cursor = new QGraphicsPixmapItem();
-    cursor->setPixmap(QPixmap(filename));
-    scene->addItem(cursor);
-}
-
-void Game::mouseMoveEvent(QMouseEvent *event)
-{
-    if(cursor){
-        cursor->setPos(event->pos());
-    }
-}
-
-void Game::mousePressEvent(QMouseEvent *event)
-{
-    if(build){
-        scene->addItem(build);
-        build->setPos(event->pos());
-        cursor = NULL;
-        build = NULL;
-    }
-    else{
-        QGraphicsView::mousePressEvent(event);
-    }
+    //connect timer to move_forward()
+    QTimer * timer = new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(move_forward()));
+    timer->start(50);
 
 }
 
+void Enemy::rotateToPoint(QPointF p)
+{
+    QLineF ln(pos(),p);
+    setRotation(-1 * ln.angle());
+}
+
+void Enemy::move_forward()
+{
+    //if close to dest, rotate to next dest
+    QLineF ln(pos(),dest);
+    if (ln.length() < 5){
+        point_index++;
+        if (point_index >= points.size()){
+            return;
+        }
+        dest = points[point_index];
+        rotateToPoint(dest);
+    }
+
+    //move enemy forward at angle theta
+    double theta = rotation(); //degrees
+    double dx = STEP_SIZE * qCos(qDegreesToRadians(theta));
+    double dy = STEP_SIZE * qSin(qDegreesToRadians(theta));
+
+    setPos(x()+dx,y()+dy);
+}
