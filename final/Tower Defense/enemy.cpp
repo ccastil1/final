@@ -3,15 +3,15 @@
 #include <QTimer>
 #include <qmath.h>
 
-#define STEP_SIZE 2
+#define STEP_SIZE 5
 
-Enemy::Enemy(QGraphicsItem *parent)
+Enemy::Enemy(QList<QPointF> ptsToFollow,QGraphicsItem *parent)
 {
     //set graphics
     setPixmap(QPixmap(":/images/semrich.png"));
 
     //set points
-    points << QPointF(200,200) << QPointF(400,200); // move down-right then right
+    points = ptsToFollow;
     point_index = 0;
     dest = points[0];
     rotateToPoint(dest);
