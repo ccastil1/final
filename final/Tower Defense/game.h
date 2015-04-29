@@ -13,8 +13,10 @@ public:
     void setCursor(QString filename);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent * event);
     void createEnemies(int numberOfEnemies);
     void createRoad();
+    void displayMainMenu();
 
     //member attributes
     QGraphicsScene * scene;
@@ -26,6 +28,7 @@ public:
     QList<QPointF> ptsToFollow;
 public slots:
     void spawnEnemy();
+    void start();
 };
 
 #endif // GAME
