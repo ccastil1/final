@@ -1,5 +1,4 @@
 # final
 Final Project
 
-Our final project is the creation of an original game, "Pacifism the Game". 
-Lab 8- files are in final directory and in the repository. 
+Our final project is the recreation of some classic games that we all grew up with. The first (within the Final_Proj folder) is a space shooter where you control the player ship at the bottom with the left/right arrow keys and shoot with the spacebar. The second game that we recreated, found within Tower_Defense, is a tower defense game. 
