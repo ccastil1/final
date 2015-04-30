@@ -9,6 +9,7 @@ Enemy::Enemy(QList<QPointF> ptsToFollow,QGraphicsItem *parent)
 {
     //set graphics
     setPixmap(QPixmap(":/images/semrich.png"));
+    setOffset(-20,-18);
 
     //set points
     points = ptsToFollow;
