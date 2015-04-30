@@ -1,11 +1,12 @@
 #include "game.h"
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QBrush>
+#include <QImage>
 #include "archertower.h"
 #include "bullet.h"
 #include "enemy.h"
 #include "button.h"
-#include "bigenemy.h"
 #include "buildarchertowericon.h"
 #include "buildarcanetowericon.h"
 #include "buildmagmatowericon.h"
@@ -17,7 +18,7 @@ Game::Game(): QGraphicsView()
     //create scene
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0,0,800,600);
-
+    setBackgroundBrush(QBrush(QImage(":/images/grass.gif")));
 
     //set scene
     setScene(scene);
@@ -27,15 +28,6 @@ Game::Game(): QGraphicsView()
     build = NULL;
     setMouseTracking(true);
 
-    //create a tower
-    //Tower * t = new Tower();
-    //t->setPos(250,250);
-
-    //add tower to scene
-    //scene->addItem(t);
-
-
-
     setFixedSize(800,600);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -43,20 +35,8 @@ Game::Game(): QGraphicsView()
     spawnTimer = new QTimer(this);
     enemiesSpawned = 0;
     maxNumOfEnemies = 0;
-    ptsToFollow << QPointF(800,0) << QPointF(325,15) << QPointF(325,175) << QPointF(700,175) << QPointF(700,425)
-                << QPointF(135,425) << QPointF(135,600);
-
-//    createEnemies(5);
-
-    //create road
-//    createRoad();
-
-//    //create enemy
-//    Enemy * enemy = new Enemy();
-//    //enemy->setPos(x(),y()+300);
-//    scene->addItem(enemy);
-
-
+    ptsToFollow << QPointF(800,50) << QPointF(325,50) << QPointF(325,175) << QPointF(700,175) << QPointF(700,425)
+                << QPointF(135,425) << QPointF(135,640);
 
     //test code
     BuildArcherTowerIcon * at = new BuildArcherTowerIcon();
@@ -116,7 +96,9 @@ void Game::keyPressEvent(QKeyEvent *event)
     }
 
     else if(event->key() == Qt::Key_R){
-        start();
+        spawnTimer->disconnect();
+        scene->clear();
+        displayMainMenu();
     }
 }
 
@@ -136,7 +118,7 @@ void Game::createRoad()
         QGraphicsLineItem * lineItem = new QGraphicsLineItem(line);
 
         QPen pen;
-        pen.setWidth(15);
+        pen.setWidth(25);
         pen.setColor(Qt::darkGray);
         lineItem->setPen(pen);
         scene->addItem(lineItem);
@@ -148,15 +130,23 @@ void Game::displayMainMenu()
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Tower Defense"));
     QFont titleFont("comic sans",50);
     titleText->setFont(titleFont);
+    QGraphicsTextItem* instrText = new QGraphicsTextItem(QString("To play, click the build icon of the tower you would like to build\n"
+                                                                 "then click where you would like to place it.\nQ = quit, R = reset"));
+    QFont instrFont("comic sans",12);
+    instrText->setFont(instrFont);
+    int ixPos = this->width()/2 - instrText->boundingRect().width()/2;
+    int iyPos = 250;
+    instrText->setPos(ixPos,iyPos);
     int txPos = this->width()/2 - titleText->boundingRect().width()/2;
     int tyPos = 150;
     titleText->setPos(txPos,tyPos);
     scene->addItem(titleText);
+    scene->addItem(instrText);
 
     //play button
     Button* playButton = new Button(QString("Play"));
     int bxPos = this->width()/2 - playButton->boundingRect().width()/2;
-    int byPos = 275;
+    int byPos = 325;
     playButton->setPos(bxPos,byPos);
     connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
     scene->addItem(playButton);
@@ -164,7 +154,7 @@ void Game::displayMainMenu()
     //quit button
     Button* quitButton = new Button(QString("Quit"));
     int qxPos = this->width()/2 - quitButton->boundingRect().width()/2;
-    int qyPos = 350;
+    int qyPos = 400;
     quitButton->setPos(qxPos,qyPos);
     connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
     scene->addItem(quitButton);
@@ -186,16 +176,17 @@ void Game::spawnEnemy()
 
 void Game::start()
 {
-    scene->clear();
+    scene->clear(); //clear screen
 
-    createEnemies(5);
-    createRoad();
+    createEnemies(10);   //create n number of enemies
+    createRoad();   //draw road
 
+    //instantiate building icons
     BuildArcherTowerIcon * at = new BuildArcherTowerIcon();
     BuildArcaneTowerIcon * ar = new BuildArcaneTowerIcon();
     BuildMagmaTowerIcon * mt = new BuildMagmaTowerIcon();
-    ar->setPos(x(),y()+50);
-    mt->setPos(x(),y()+100);
+    ar->setPos(0,y());
+    mt->setPos(0,y()+50);
     scene->addItem(at);
     scene->addItem(ar);
     scene->addItem(mt);
