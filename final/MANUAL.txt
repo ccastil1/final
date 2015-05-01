@@ -3,3 +3,9 @@ WELCOME TO QT 2-in-1. QT 2-in-1 is a game bundle, made by Travis Patterson, Kami
 In Space Shooter, you control a spaceship trying to gun down approaching enemies. Press the left and right arrow keys to move the spaceship. Press space to fire your laser. Earn score by hitting the enemies with your shots. You lose health when enemies make it past the bottom of the screen. Try to get the higher score before your health reaches zero! You can reset the game by pressing R at any time as well when you want to start over. (If the spaceship doesn't move. Try clicking on it. THen it should move, afterwards)
 
 In Tower Defense, you place towers down that shoot at incoming...er...images. Click Play when you see the menu to play the game or press quit to quit. Once playing, you can select towers by clicking on the icons on the left of the screen. After that, click on where you want to place your towers. You can't, however, place towers on the road going down on the screen. The towers will fire automatically at the images. Press Q or R at any time to quit or reset, respectively.
+
+Credited Media:
+
+Theme of Samus Aran, Space Warrior - Kenji Yamamoto, Super Metroid Original Soundtrack
+Laser.wav - Star Wars Sounds
+Bass Battle - Jamie Hughes, Banjo-Kazooie: Grunty's Revenge 
